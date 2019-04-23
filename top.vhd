@@ -33,6 +33,13 @@ component hc05 is
            din : out  STD_LOGIC_VECTOR (7 downto 0));
 end component;
 -----------
+----------- componente DIVISOR DE CLOCK
+component divclk is
+    Port ( clk : in  STD_LOGIC;
+           clk : out  STD_LOGIC;
+           rst : in  STD_LOGIC);
+end component;
+-----------
 ----------- declaração dos sinais (barramentos internos são sempre sinais)
 signal srw : STD_LOGIC; --- sinais não possuem direção
 signal sdin : STD_LOGIC_VECTOR (7 downto 0);
@@ -42,6 +49,7 @@ begin
 ----------- instâncias
 ramInst: ram port map (clk, rst, saddr, sdin, srw, sdout); --- port map na ordem apresentada nos respectivos componentes
 hc05Inst: hc05 port map(clk, rst, sdout, saddr, srw, sdin);
-
+clkdivInst: clkdiv port map (clk, clk, rst);
+-----------
 end Behavioral;
 
