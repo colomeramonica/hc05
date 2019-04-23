@@ -44,12 +44,13 @@ end component;
 signal srw : STD_LOGIC; --- sinais não possuem direção
 signal sdin : STD_LOGIC_VECTOR (7 downto 0);
 signal saddr : STD_LOGIC_VECTOR (7 downto 0);
+signal sdivclk : STD_LOGIC;
 -----------
 begin
 ----------- instâncias
 ramInst: ram port map (clk, rst, saddr, sdin, srw, sdout); --- port map na ordem apresentada nos respectivos componentes
 hc05Inst: hc05 port map(clk, rst, sdout, saddr, srw, sdin);
-clkdivInst: clkdiv port map (clk, clk, rst);
+clkdivInst: clkdiv port map (clk, sdivclk, rst);
 -----------
 end Behavioral;
 
